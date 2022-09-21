@@ -20,12 +20,15 @@ namespace cyberrogue
 	public:
 		Engine(int width, int height, const std::string& title, int argc, char* argv[]);
 		~Engine();
+		static Engine current;
 
 		void HandleEvents();
 
 		bool IsRunning() const;
 		void Render();
 		void ProcessSystems();
+
+		bool DrawObject(pos_t position, renderable render);
 
 	private:
 		void RegisterSystems();

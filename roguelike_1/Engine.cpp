@@ -8,6 +8,7 @@
 
 namespace cyberrogue
 {
+	static std::unique_ptr<Engine> mEngine;
 	constexpr char PLAYER_ICON = '@';
 	constexpr int MAX_FPS = 60;
 
@@ -68,8 +69,6 @@ namespace cyberrogue
 	{
 		TCOD_console_clear(mainConsole.get());
 
-		tcod::print(mainConsole, { player.position.x, player.position.y }, player.render.glyph, std::nullopt, std::nullopt);
-
 		mainContext.present(mainConsole);
 	}
 
@@ -86,5 +85,10 @@ namespace cyberrogue
 		}
 	}
 
+	bool Engine::DrawObject(pos_t position, renderable render)
+	{
+		tcod::print(mainConsole, { position.x, position.y }, render.glyph, std::nullopt, std::nullopt);
 
+		return true;
+	}
 }

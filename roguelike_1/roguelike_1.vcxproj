@@ -139,6 +139,7 @@
     <ClInclude Include="EntitySystem.hpp" />
     <ClInclude Include="Position.hpp" />
     <ClInclude Include="Renderable.hpp" />
+    <ClInclude Include="ServiceLocator.hpp" />
     <ClInclude Include="System.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

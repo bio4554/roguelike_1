@@ -5,21 +5,26 @@
 
 int main()
 {
-    constexpr int WINDOW_WIDTH = 80;
-    constexpr int WINDOW_HEIGHT = 50;
-    static const std::string WINDOW_TITLE = "libtcod C++ tutorial 1";
+	constexpr int WINDOW_WIDTH = 80;
+	constexpr int WINDOW_HEIGHT = 50;
+	static const std::string WINDOW_TITLE = "libtcod C++ tutorial 1";
 
-    cyberrogue::Engine engine{ WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, 0, nullptr};
+	
 
-    while(engine.IsRunning())
-    {
-        engine.ProcessSystems();
-        engine.HandleEvents();
-        engine.Render();
-    }
+	cyberrogue::Engine::current = cyberrogue::Engine(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, 0, nullptr);
 
-    return 0;
+	//cyberrogue::Engine::current = 0;
+
+	while (engine.IsRunning())
+	{
+		engine.ProcessSystems();
+		engine.HandleEvents();
+		engine.Render();
+	}
+
+	return 0;
 }
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
