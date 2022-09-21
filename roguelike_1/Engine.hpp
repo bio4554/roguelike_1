@@ -33,10 +33,12 @@ namespace cyberrogue
 	private:
 		void RegisterSystems();
 
+		double frameCount;
+
 		MessageBus messageBus;
 		Graphics graphics;
 		Entity player;
 		SDL_Event event;
-		std::map<std::type_index, std::unique_ptr<System>> systems;
+		std::map<std::type_index, System*> systems;
 	};
 }

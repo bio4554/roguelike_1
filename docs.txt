@@ -1,5 +1,8 @@
 BusNode must implement:
 
-    nUpdate()
-
     onNotify(Message message)
+
+
+All System derived classes also derive from BusNode and must implement:
+
+    update()

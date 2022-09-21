@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 
+#include <iostream>
 #include <ranges>
 #include <libtcod/libtcod.hpp>
 #include <SDL2/SDL.h>
@@ -15,8 +16,9 @@ namespace cyberrogue
 	Engine::Engine(int width, int height, const std::string& title, int argc, char* argv[])
 	: messageBus(), graphics(width, height, title, argc, argv, &messageBus), player({width / 2, height / 2}, {"@"})
 	{
-
+		frameCount = 0;
 		RegisterSystems();
+		dynamic_cast<EntitySystem*>(systems[typeid(EntitySystem)])->registerEntity(&player);
 	}
 
 	Engine::~Engine()
@@ -52,11 +54,14 @@ namespace cyberrogue
 
 	void Engine::RunGame()
 	{
-		while(true)
+		while(IsRunning())
 		{
-			ProcessSystems();
-			HandleEvents();
-			graphics.render();
+			std::cout << "FRAME: " << frameCount << std::endl;
+			graphics.clear();
+			HandleEvents(); // handle events
+			messageBus.notify(); // empty message queue
+			ProcessSystems(); // update all systems
+			frameCount++;
 		}
 	}
 
@@ -68,7 +73,10 @@ namespace cyberrogue
 
 	void Engine::RegisterSystems()
 	{
-		systems[typeid(EntitySystem)] = std::make_unique<EntitySystem>();
+		systems[typeid(EntitySystem)] = new EntitySystem(&messageBus);
+
+
+		systems[typeid(Graphics)] = &graphics; // graphics should run last
 	}
 
 	void Engine::ProcessSystems()

@@ -8,8 +8,6 @@ namespace cyberrogue
 	public:
 		BusNode(MessageBus* messageBus);
 
-		virtual void nUpdate() = 0;
-
 	protected:
 		MessageBus* messageBus;
 

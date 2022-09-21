@@ -5,7 +5,7 @@
 
 namespace cyberrogue
 {
-	Graphics::Graphics(int width, int height, const std::string& title, int argc, char* argv[], MessageBus* messageBus) : BusNode(messageBus)
+	Graphics::Graphics(int width, int height, const std::string& title, int argc, char* argv[], MessageBus* messageBus) : System(messageBus)
 	{
 		mainConsole = tcod::Console(width, height);
 		auto params = TCOD_ContextParams{};
@@ -22,19 +22,36 @@ namespace cyberrogue
 
 	void Graphics::onNotify(Message message)
 	{
-		std::cout << "Graphics received message: " << message.getEvent() << std::endl;
+		std::cout << "Graphics received message: " << message.getType() << std::endl;
+		std::string type = message.getType();
+		std::map<std::string, std::string> data = message.getData();
+
+		if(type == "DRAW_CHAR")
+		{
+			drawChar(std::stoi(data["x"]), std::stoi(data["y"]), data["str"]);
+		}
 	}
 
 	void Graphics::render()
 	{
-		TCOD_console_clear(mainConsole.get());
-
 		mainContext.present(mainConsole);
 	}
 
-	void Graphics::nUpdate()
+	void Graphics::clear()
 	{
-		
+		TCOD_console_clear(mainConsole.get());
+	}
+
+
+	bool Graphics::update()
+	{
+		render();
+		return true;
+	}
+
+	void Graphics::drawChar(int x, int y, std::string str)
+	{
+		tcod::print(mainConsole, { x,y }, str, std::nullopt, std::nullopt);
 	}
 
 }

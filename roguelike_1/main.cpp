@@ -15,12 +15,7 @@ int main()
 
 	//cyberrogue::Engine::current = 0;
 
-	while (engine.IsRunning())
-	{
-		engine.ProcessSystems();
-		engine.HandleEvents();
-		engine.Render();
-	}
+	engine.RunGame();
 
 	return 0;
 }

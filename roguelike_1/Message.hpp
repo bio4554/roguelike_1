@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <string>
 
 namespace cyberrogue
@@ -6,11 +7,13 @@ namespace cyberrogue
 	class Message
 	{
 	public:
-		Message(const std::string event);
+		Message(const std::string type, std::map<std::string, std::string> data);
 
-		std::string getEvent();
+		std::string getType();
+		std::map<std::string, std::string> getData();
 
 	private:
-		std::string messageEvent;
+		std::string messageType;
+		std::map<std::string, std::string> messageData;
 	};
 }
