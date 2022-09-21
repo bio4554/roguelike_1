@@ -11,6 +11,7 @@
 #include <typeindex>
 
 #include "Entity.hpp"
+#include "Graphics.hpp"
 #include "System.hpp"
 
 namespace cyberrogue
@@ -20,21 +21,20 @@ namespace cyberrogue
 	public:
 		Engine(int width, int height, const std::string& title, int argc, char* argv[]);
 		~Engine();
-		static Engine current;
 
 		void HandleEvents();
 
 		bool IsRunning() const;
-		void Render();
 		void ProcessSystems();
 
-		bool DrawObject(pos_t position, renderable render);
+		void RunGame();
+		
 
 	private:
 		void RegisterSystems();
 
-		tcod::Console mainConsole;
-		tcod::Context mainContext;
+		MessageBus messageBus;
+		Graphics graphics;
 		Entity player;
 		SDL_Event event;
 		std::map<std::type_index, std::unique_ptr<System>> systems;

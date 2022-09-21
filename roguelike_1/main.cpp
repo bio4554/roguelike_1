@@ -11,7 +11,7 @@ int main()
 
 	
 
-	cyberrogue::Engine::current = cyberrogue::Engine(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, 0, nullptr);
+	cyberrogue::Engine engine = cyberrogue::Engine(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, 0, nullptr);
 
 	//cyberrogue::Engine::current = 0;
 

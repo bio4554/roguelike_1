@@ -2,9 +2,10 @@
 
 namespace cyberrogue
 {
-	class System
+	class System : public BusNode
 	{
 	public:
+		System(MessageBus* messageBus) : BusNode(messageBus) {}
 		virtual bool update() = 0;
 	};
 }

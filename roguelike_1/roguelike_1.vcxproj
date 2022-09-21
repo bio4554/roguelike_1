@@ -128,15 +128,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BusNode.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntitySystem.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="MessageBus.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BusNode.hpp" />
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="EntitySystem.hpp" />
+    <ClInclude Include="Graphics.hpp" />
+    <ClInclude Include="Message.hpp" />
+    <ClInclude Include="MessageBus.hpp" />
     <ClInclude Include="Position.hpp" />
     <ClInclude Include="Renderable.hpp" />
     <ClInclude Include="ServiceLocator.hpp" />

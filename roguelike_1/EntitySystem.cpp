@@ -4,7 +4,7 @@
 
 namespace cyberrogue
 {
-	EntitySystem::EntitySystem()
+	EntitySystem::EntitySystem(MessageBus* messageBus) : System(messageBus)
 	{
 		
 	}

@@ -12,19 +12,9 @@ namespace cyberrogue
 	constexpr char PLAYER_ICON = '@';
 	constexpr int MAX_FPS = 60;
 
-	Engine::Engine(int width, int height, const std::string& title, int argc, char* argv[]) : player({ width / 2, height / 2 }, { "@" })
+	Engine::Engine(int width, int height, const std::string& title, int argc, char* argv[])
+	: messageBus(), graphics(width, height, title, argc, argv, &messageBus), player({width / 2, height / 2}, {"@"})
 	{
-		mainConsole = tcod::Console(width, height);
-		auto params = TCOD_ContextParams{};
-		params.tcod_version = TCOD_COMPILEDVERSION;  // This is required.
-		params.console = mainConsole.get();  // Derive the window size from the console size.
-		params.window_title = "Libtcod Project";
-		params.sdl_window_flags = SDL_WINDOW_RESIZABLE;
-		params.vsync = true;
-		params.argc = argc;  // This allows some user-control of the context.
-		params.argv = argv;
-
-		mainContext = tcod::Context(params);
 
 		RegisterSystems();
 	}
@@ -60,16 +50,20 @@ namespace cyberrogue
 		}
 	}
 
+	void Engine::RunGame()
+	{
+		while(true)
+		{
+			ProcessSystems();
+			HandleEvents();
+			graphics.render();
+		}
+	}
+
+
 	bool Engine::IsRunning() const
 	{
 		return (event.type != SDL_QUIT);
-	}
-
-	void Engine::Render()
-	{
-		TCOD_console_clear(mainConsole.get());
-
-		mainContext.present(mainConsole);
 	}
 
 	void Engine::RegisterSystems()
@@ -83,12 +77,5 @@ namespace cyberrogue
 		{
 			system->update();
 		}
-	}
-
-	bool Engine::DrawObject(pos_t position, renderable render)
-	{
-		tcod::print(mainConsole, { position.x, position.y }, render.glyph, std::nullopt, std::nullopt);
-
-		return true;
 	}
 }
