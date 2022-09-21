@@ -1,0 +1,5 @@
+BusNode must implement:
+
+    nUpdate()
+
+    onNotify(Message message)
