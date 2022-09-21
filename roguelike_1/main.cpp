@@ -9,12 +9,12 @@ int main()
     constexpr int WINDOW_HEIGHT = 50;
     static const std::string WINDOW_TITLE = "libtcod C++ tutorial 1";
 
-    tutorial::Engine engine{ WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, 0, nullptr};
+    cyberrogue::Engine engine{ WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, 0, nullptr};
 
     while(engine.IsRunning())
     {
         engine.Render();
-        engine.HandleInput();
+        engine.HandleEvents();
     }
 
     return 0;

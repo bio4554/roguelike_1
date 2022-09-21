@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tutorial
+namespace cyberrogue
 {
 	struct pos_t
 	{

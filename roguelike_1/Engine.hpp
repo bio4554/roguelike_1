@@ -7,7 +7,9 @@
 
 #include <string>
 
-namespace tutorial
+#include "Entity.hpp"
+
+namespace cyberrogue
 {
 	class Engine
 	{
@@ -15,7 +17,7 @@ namespace tutorial
 		Engine(int width, int height, const std::string& title, int argc, char* argv[]);
 		~Engine();
 
-		void HandleInput();
+		void HandleEvents();
 
 		bool IsRunning() const;
 		void Render();
@@ -23,7 +25,7 @@ namespace tutorial
 	private:
 		tcod::Console mainConsole;
 		tcod::Context mainContext;
-		pos_t player_pos_;
+		Entity player;
 		SDL_Event event;
 	};
 }
