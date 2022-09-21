@@ -18,7 +18,10 @@ namespace cyberrogue
 	{
 		while(!messages.empty()) // empty the message queue
 		{
+#ifdef _DEBUG
 			std::cout << "DISPATCH MESSAGE: " << messages.front().getType() << std::endl;
+#endif
+
 			for(const auto& func : receivers) // send message to each system
 			{
 				func(messages.front());

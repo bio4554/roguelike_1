@@ -22,7 +22,9 @@ namespace cyberrogue
 
 	void Graphics::onNotify(Message message)
 	{
+#ifdef _DEBUG
 		std::cout << "Graphics received message: " << message.getType() << std::endl;
+#endif
 		std::string type = message.getType();
 		std::map<std::string, std::string> data = message.getData();
 

@@ -12,7 +12,9 @@ namespace cyberrogue
 
 	bool EntitySystem::update()
 	{
+#ifdef _DEBUG
 		std::cout << "update entities" << std::endl;
+#endif
 		//mEngine->
 
 		for(const auto& entity : entities)

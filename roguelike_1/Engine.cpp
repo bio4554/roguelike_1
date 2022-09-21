@@ -43,7 +43,9 @@ namespace cyberrogue
 	{
 		while(isRunning)
 		{
+#ifdef _DEBUG
 			std::cout << "FRAME: " << frameCount << std::endl;
+#endif
 			graphics.clear();
 			HandleEvents(); // handle events
 			messageBus.notify(); // empty message queue
