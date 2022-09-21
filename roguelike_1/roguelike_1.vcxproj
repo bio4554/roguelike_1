@@ -130,13 +130,16 @@
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntitySystem.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="EntitySystem.hpp" />
     <ClInclude Include="Position.hpp" />
     <ClInclude Include="Renderable.hpp" />
+    <ClInclude Include="System.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

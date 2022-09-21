@@ -13,8 +13,9 @@ int main()
 
     while(engine.IsRunning())
     {
-        engine.Render();
+        engine.ProcessSystems();
         engine.HandleEvents();
+        engine.Render();
     }
 
     return 0;

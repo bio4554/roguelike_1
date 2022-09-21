@@ -1,7 +1,10 @@
 #include "Engine.hpp"
 
+#include <ranges>
 #include <libtcod/libtcod.hpp>
 #include <SDL2/SDL.h>
+
+#include "EntitySystem.hpp"
 
 namespace cyberrogue
 {
@@ -21,6 +24,8 @@ namespace cyberrogue
 		params.argv = argv;
 
 		mainContext = tcod::Context(params);
+
+		RegisterSystems();
 	}
 
 	Engine::~Engine()
@@ -67,4 +72,19 @@ namespace cyberrogue
 
 		mainContext.present(mainConsole);
 	}
+
+	void Engine::RegisterSystems()
+	{
+		systems[typeid(EntitySystem)] = std::make_unique<EntitySystem>();
+	}
+
+	void Engine::ProcessSystems()
+	{
+		for(const auto& system : systems | std::views::values)
+		{
+			system->update();
+		}
+	}
+
+
 }
