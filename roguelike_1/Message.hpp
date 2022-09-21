@@ -8,6 +8,7 @@ namespace cyberrogue
 	{
 	public:
 		Message(const std::string type, std::map<std::string, std::string> data);
+		Message(const std::string type);
 
 		std::string getType();
 		std::map<std::string, std::string> getData();

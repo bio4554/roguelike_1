@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 
 #include "EntitySystem.hpp"
+#include "PlayerInputSystem.hpp"
 
 namespace cyberrogue
 {
@@ -14,11 +15,18 @@ namespace cyberrogue
 	constexpr int MAX_FPS = 60;
 
 	Engine::Engine(int width, int height, const std::string& title, int argc, char* argv[])
-	: messageBus(), graphics(width, height, title, argc, argv, &messageBus), player({width / 2, height / 2}, {"@"})
+	: messageBus([=](Message message) -> void
+		{
+			this->onNotify(message);
+		}), graphics(width, height, title, argc, argv, &messageBus), player({width / 2, height / 2}, {"@"})
 	{
+		isRunning = true;
 		frameCount = 0;
 		RegisterSystems();
 		dynamic_cast<EntitySystem*>(systems[typeid(EntitySystem)])->registerEntity(&player);
+		/*std::string mType = "PLAYER_CREATED";
+		std::map<std::string, std::string> mData;
+		mData["player_id"] = std::to_string(playerId);*/
 	}
 
 	Engine::~Engine()
@@ -28,33 +36,12 @@ namespace cyberrogue
 
 	void Engine::HandleEvents()
 	{
-		SDL_PollEvent(&event);
-
-		if(event.type == SDL_KEYDOWN)
-		{
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_w:
-				--player.position.y;
-				break;
-			case SDLK_s:
-				++player.position.y;
-				break;
-			case SDLK_a:
-				--player.position.x;
-				break;
-			case SDLK_d:
-				++player.position.x;
-				break;
-			default:
-				break;
-			}
-		}
+		
 	}
 
 	void Engine::RunGame()
 	{
-		while(IsRunning())
+		while(isRunning)
 		{
 			std::cout << "FRAME: " << frameCount << std::endl;
 			graphics.clear();
@@ -66,15 +53,16 @@ namespace cyberrogue
 	}
 
 
-	bool Engine::IsRunning() const
+	void Engine::onNotify(Message message)
 	{
-		return (event.type != SDL_QUIT);
+		if (message.getType() == "SDL_QUIT")
+			isRunning = false;
 	}
 
 	void Engine::RegisterSystems()
 	{
 		systems[typeid(EntitySystem)] = new EntitySystem(&messageBus);
-
+		systems[typeid(PlayerInputSystem)] = new PlayerInputSystem(&messageBus, &player);
 
 		systems[typeid(Graphics)] = &graphics; // graphics should run last
 	}

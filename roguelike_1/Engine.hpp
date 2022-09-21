@@ -32,8 +32,10 @@ namespace cyberrogue
 
 	private:
 		void RegisterSystems();
+		void onNotify(Message message);
 
 		double frameCount;
+		bool isRunning;
 
 		MessageBus messageBus;
 		Graphics graphics;

@@ -9,6 +9,11 @@ namespace cyberrogue
 	{
 	}
 
+	Message::Message(const std::string type) : messageType(type)
+	{
+		
+	}
+
 
 	std::string Message::getType()
 	{

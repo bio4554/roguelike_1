@@ -28,15 +28,28 @@ namespace cyberrogue
 		return true;
 	}
 
-	bool EntitySystem::registerEntity(Entity* entity)
+	unsigned int EntitySystem::registerEntity(Entity* entity)
 	{
 		entities[ecount_] = entity;
 		ecount_++;
-		return true;
+		return ecount_ - 1;
 	}
 
 	void EntitySystem::onNotify(Message message)
 	{
 		
 	}
+
+	Entity* EntitySystem::getEntity(unsigned id)
+	{
+		return entities[id];
+	}
+
+	void EntitySystem::moveEntity(int x, int y, unsigned id)
+	{
+		entities[id]->position.x = x;
+		entities[id]->position.y = y;
+	}
+
+
 }

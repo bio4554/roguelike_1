@@ -63,6 +63,9 @@
     <ClCompile Include="EntitySystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerInputSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.hpp">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Graphics.hpp">
       <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInputSystem.hpp">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

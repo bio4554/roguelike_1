@@ -14,12 +14,15 @@ namespace cyberrogue
 	public:
 		EntitySystem(MessageBus* messageBus);
 		bool update() override; // System update
-		bool registerEntity(Entity* entity);
+		unsigned int registerEntity(Entity* entity);
 
+		Entity* getEntity(unsigned int id);
 
 
 	private:
 		void onNotify(Message message) override;
+
+		void moveEntity(int x, int y, unsigned int id);
 
 		std::map<unsigned int, Entity*> entities;
 		unsigned int ecount_ = 0;
