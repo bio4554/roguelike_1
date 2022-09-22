@@ -71,8 +71,8 @@ namespace cyberrogue
 	void Engine::RegisterSystems()
 	{
 		systems.push_back(new PlayerInputSystem(&messageBus, &player));
-		systems.push_back(new EntitySystem(&messageBus));
 		systems.push_back(new World(&messageBus, &graphics));
+		systems.push_back(new EntitySystem(&messageBus));
 		systems.push_back(&graphics); // graphics should run last
 	}
 
