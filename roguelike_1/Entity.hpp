@@ -1,6 +1,6 @@
 #pragma once
-#include "Renderable.hpp"
-#include "Position.hpp"
+#include "renderable_t.hpp"
+#include "pos_t.hpp"
 
 namespace cyberrogue
 {
@@ -8,10 +8,10 @@ namespace cyberrogue
 	{
 	private:
 	public:
-		Entity(pos_t pos, renderable rend);
+		Entity(pos_t pos, renderable_t rend);
 		~Entity();
 
 		pos_t position;
-		renderable render;
+		renderable_t render;
 	};
 }

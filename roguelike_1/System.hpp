@@ -6,6 +6,6 @@ namespace cyberrogue
 	{
 	public:
 		System(MessageBus* messageBus) : BusNode(messageBus) {}
-		virtual bool update() = 0;
+		virtual void update() = 0;
 	};
 }

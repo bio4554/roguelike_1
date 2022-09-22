@@ -13,7 +13,7 @@ namespace cyberrogue
 	{
 	public:
 		EntitySystem(MessageBus* messageBus);
-		bool update() override; // System update
+		void update() override; // System update
 		unsigned int registerEntity(Entity* entity);
 
 		Entity* getEntity(unsigned int id);

@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{dfe95ae7-24a7-4dab-ab05-e312e6f6c521}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataModels">
+      <UniqueIdentifier>{3d7d79b1-06fb-4c2a-8e7c-c84d341d10a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,15 +69,18 @@
     <ClCompile Include="PlayerInputSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Position.hpp">
+    <ClInclude Include="pos_t.hpp">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Renderable.hpp">
+    <ClInclude Include="renderable_t.hpp">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
     <ClInclude Include="Entity.hpp">
@@ -102,6 +108,12 @@
       <Filter>Header Files\Services</Filter>
     </ClInclude>
     <ClInclude Include="PlayerInputSystem.hpp">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.hpp">
+      <Filter>Header Files\DataModels</Filter>
+    </ClInclude>
+    <ClInclude Include="World.hpp">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>

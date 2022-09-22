@@ -23,14 +23,14 @@ namespace cyberrogue
 	void Graphics::onNotify(Message message)
 	{
 #ifdef _DEBUG
-		std::cout << "Graphics received message: " << message.getType() << std::endl;
+		//std::cout << "Graphics received message: " << message.getType() << std::endl;
 #endif
 		std::string type = message.getType();
 		std::map<std::string, std::string> data = message.getData();
 
 		if(type == "DRAW_CHAR")
 		{
-			drawChar(std::stoi(data["x"]), std::stoi(data["y"]), data["str"]);
+			drawAt(std::stoi(data["x"]), std::stoi(data["y"]), data["str"]);
 		}
 	}
 
@@ -45,13 +45,13 @@ namespace cyberrogue
 	}
 
 
-	bool Graphics::update()
+	void Graphics::update()
 	{
+		std::cout << "Update Graphics" << std::endl;
 		render();
-		return true;
 	}
 
-	void Graphics::drawChar(int x, int y, std::string str)
+	void Graphics::drawAt(int x, int y, std::string str)
 	{
 		tcod::print(mainConsole, { x,y }, str, std::nullopt, std::nullopt);
 	}

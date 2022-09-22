@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "Position.hpp"
+#include "pos_t.hpp"
 #include <libtcod/libtcod.hpp>
 #include <SDL2/SDL.h>
 
@@ -33,14 +33,17 @@ namespace cyberrogue
 	private:
 		void RegisterSystems();
 		void onNotify(Message message);
+		System* getSystem(std::string serviceType);
 
 		double frameCount;
 		bool isRunning;
+
+
 
 		MessageBus messageBus;
 		Graphics graphics;
 		Entity player;
 		SDL_Event event;
-		std::map<std::type_index, System*> systems;
+		std::vector<System*> systems;
 	};
 }

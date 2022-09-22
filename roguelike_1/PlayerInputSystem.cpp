@@ -1,5 +1,6 @@
 #include "PlayerInputSystem.hpp"
 
+#include <iostream>
 #include <optional>
 
 namespace cyberrogue
@@ -9,8 +10,9 @@ namespace cyberrogue
 	}
 
 
-	bool PlayerInputSystem::update()
+	void PlayerInputSystem::update()
 	{
+		std::cout << "Update PlayerInputSystem" << std::endl;
 		SDL_PollEvent(&event);
 
 		if (event.type == SDL_KEYDOWN)
@@ -19,15 +21,19 @@ namespace cyberrogue
 			{
 			case SDLK_w:
 				--player->position.y;
+				send({ "PLAYER_MOVED", {{"x", std::to_string(player->position.x)},{"y",std::to_string(player->position.y)}}});
 				break;
 			case SDLK_s:
 				++player->position.y;
+				send({ "PLAYER_MOVED", {{"x", std::to_string(player->position.x)},{"y",std::to_string(player->position.y)}} });
 				break;
 			case SDLK_a:
 				--player->position.x;
+				send({ "PLAYER_MOVED", {{"x", std::to_string(player->position.x)},{"y",std::to_string(player->position.y)}} });
 				break;
 			case SDLK_d:
 				++player->position.x;
+				send({ "PLAYER_MOVED", {{"x", std::to_string(player->position.x)},{"y",std::to_string(player->position.y)}} });
 				break;
 			default:
 				break;
@@ -36,8 +42,7 @@ namespace cyberrogue
 		{
 			send({ "SDL_QUIT" });
 		}
-
-		return true;
+		
 	}
 
 

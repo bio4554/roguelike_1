@@ -13,7 +13,7 @@ namespace cyberrogue
 	{
 	public:
 		PlayerInputSystem(MessageBus* messageBus, Entity* pla);
-		bool update() override; // System update
+		void update() override; // System update
 	private:
 		void onNotify(Message message) override;
 

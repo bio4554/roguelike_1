@@ -4,9 +4,12 @@
 #include <ranges>
 #include <libtcod/libtcod.hpp>
 #include <SDL2/SDL.h>
+#include <chrono>
+#include <thread>
 
 #include "EntitySystem.hpp"
 #include "PlayerInputSystem.hpp"
+#include "World.hpp"
 
 namespace cyberrogue
 {
@@ -23,7 +26,9 @@ namespace cyberrogue
 		isRunning = true;
 		frameCount = 0;
 		RegisterSystems();
-		dynamic_cast<EntitySystem*>(systems[typeid(EntitySystem)])->registerEntity(&player);
+
+
+		(static_cast<EntitySystem*>(getSystem(typeid(EntitySystem).name())))->registerEntity(&player);
 		/*std::string mType = "PLAYER_CREATED";
 		std::map<std::string, std::string> mData;
 		mData["player_id"] = std::to_string(playerId);*/
@@ -41,6 +46,7 @@ namespace cyberrogue
 
 	void Engine::RunGame()
 	{
+		//using namespace std::chrono_literals;
 		while(isRunning)
 		{
 #ifdef _DEBUG
@@ -51,6 +57,7 @@ namespace cyberrogue
 			messageBus.notify(); // empty message queue
 			ProcessSystems(); // update all systems
 			frameCount++;
+			//std::this_thread::sleep_for(2000ms);
 		}
 	}
 
@@ -63,17 +70,34 @@ namespace cyberrogue
 
 	void Engine::RegisterSystems()
 	{
-		systems[typeid(EntitySystem)] = new EntitySystem(&messageBus);
-		systems[typeid(PlayerInputSystem)] = new PlayerInputSystem(&messageBus, &player);
-
-		systems[typeid(Graphics)] = &graphics; // graphics should run last
+		systems.push_back(new PlayerInputSystem(&messageBus, &player));
+		systems.push_back(new EntitySystem(&messageBus));
+		systems.push_back(new World(&messageBus, &graphics));
+		systems.push_back(&graphics); // graphics should run last
 	}
 
 	void Engine::ProcessSystems()
 	{
-		for(const auto& system : systems | std::views::values)
+		for(const auto& system : systems)
 		{
 			system->update();
 		}
+
+		/*for(int i = 0; i < systems.size(); i++)
+		{
+			systems[i]->update();
+		}*/
 	}
+
+
+	System* Engine::getSystem(std::string serviceType)
+	{
+		for(auto system : systems)
+		{
+			if (typeid(*system).name() == serviceType)
+				return system;
+		}
+		return nullptr;
+	}
+
 }

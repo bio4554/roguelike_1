@@ -10,10 +10,10 @@ namespace cyberrogue
 	}
 
 
-	bool EntitySystem::update()
+	void EntitySystem::update()
 	{
 #ifdef _DEBUG
-		std::cout << "update entities" << std::endl;
+		std::cout << "Update Entities" << std::endl;
 #endif
 		//mEngine->
 
@@ -26,8 +26,6 @@ namespace cyberrogue
 			auto message = Message("DRAW_CHAR", messageData);
 			send(message);
 		}
-
-		return true;
 	}
 
 	unsigned int EntitySystem::registerEntity(Entity* entity)
