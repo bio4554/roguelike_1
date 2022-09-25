@@ -21,7 +21,7 @@ namespace cyberrogue
 	: messageBus([=](Message message) -> void
 		{
 			this->onNotify(message);
-		}), graphics(width, height, title, argc, argv, &messageBus), player({width / 2, height / 2}, {"@"})
+		}), graphics(width, height, title, argc, argv, &messageBus), player({width / 2, height / 2}, {"d"})
 	{
 		isRunning = true;
 		frameCount = 0;
