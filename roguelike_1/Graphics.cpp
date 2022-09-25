@@ -48,7 +48,6 @@ namespace cyberrogue
 	void Graphics::update()
 	{
 		std::cout << "Update Graphics" << std::endl;
-		render();
 	}
 
 	void Graphics::drawAt(int x, int y, std::string str)

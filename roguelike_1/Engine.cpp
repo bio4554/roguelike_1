@@ -54,8 +54,9 @@ namespace cyberrogue
 #endif
 			graphics.clear();
 			HandleEvents(); // handle events
-			messageBus.notify(); // empty message queue
 			ProcessSystems(); // update all systems
+			messageBus.notify(); // empty message queue
+			graphics.render();
 			frameCount++;
 			//std::this_thread::sleep_for(2000ms);
 		}
