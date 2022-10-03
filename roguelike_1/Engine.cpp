@@ -29,9 +29,6 @@ namespace cyberrogue
 
 
 		(static_cast<EntitySystem*>(getSystem(typeid(EntitySystem).name())))->registerEntity(&player);
-		/*std::string mType = "PLAYER_CREATED";
-		std::map<std::string, std::string> mData;
-		mData["player_id"] = std::to_string(playerId);*/
 	}
 
 	Engine::~Engine()
@@ -46,7 +43,6 @@ namespace cyberrogue
 
 	void Engine::RunGame()
 	{
-		//using namespace std::chrono_literals;
 		while(isRunning)
 		{
 #ifdef _DEBUG
@@ -58,7 +54,6 @@ namespace cyberrogue
 			messageBus.notify(); // empty message queue
 			graphics.render();
 			frameCount++;
-			//std::this_thread::sleep_for(2000ms);
 		}
 	}
 
@@ -83,11 +78,6 @@ namespace cyberrogue
 		{
 			system->update();
 		}
-
-		/*for(int i = 0; i < systems.size(); i++)
-		{
-			systems[i]->update();
-		}*/
 	}
 
 

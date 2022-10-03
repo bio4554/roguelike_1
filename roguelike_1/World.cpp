@@ -28,13 +28,8 @@ namespace cyberrogue
 		{
 			for(int x = 0; x < currentMap[y].size(); x++)
 			{
-				graphics->drawAt(x, y, currentMap[y][x].render.glyph); // way fucking faster
-				/*std::map<std::string, std::string> messageData;
-				messageData["x"] = std::to_string(x);
-				messageData["y"] = std::to_string(y);
-				messageData["str"] = currentMap[y][x].render.glyph;
-				auto message = Message("DRAW_CHAR", messageData);
-				send(message);*/
+				// call graphics directly instead of using message bus. the world makes x * y draw calls every frame, this is faster
+				graphics->drawAt(x, y, currentMap[y][x].render.glyph);
 			}
 		}
 	}

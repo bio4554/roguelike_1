@@ -15,7 +15,6 @@ namespace cyberrogue
 #ifdef _DEBUG
 		std::cout << "Update Entities" << std::endl;
 #endif
-		//mEngine->
 
 		for(const auto& entity : entities)
 		{
